@@ -3,7 +3,7 @@
 function App() {
   return (
     <div>
-      Welcome
+      Welcome to the Site
     </div>
   )
 }

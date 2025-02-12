@@ -1,11 +1,13 @@
-// write java script and html at the same time 
+import Landing from "./pages/Landing";
+//import LogIn from "./pages/LogIn";
+//import SignUp from "./pages/SignUp";
 
-function App() {
-  return (
+ function App() {
+    return (
     <div>
-      Welcome
+    <Landing />
     </div>
-  )
-}
-
-export default App;
+    );
+  };
+  
+  export default App;

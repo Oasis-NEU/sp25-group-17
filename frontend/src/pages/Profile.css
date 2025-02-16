@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #FFFCC9;
     flex-direction: column;
     position: relative;
 }
@@ -21,15 +23,19 @@
 }
 
 .message {
-    font-size: 50px;
+    font-size: 65px;
     color: #333;
-    margin-bottom: 20px;
+    margin-top: -300px;
+    font-weight: bold;
+    font-family: Poppins, sans-serif;
 }
 
 .image {
     max-width: 150px;
     height: auto;
-    margin-bottom: 20px;
+    top: 500px;
+    left: 260px;
+    position: absolute;
 }
 
 .form {
@@ -49,19 +55,26 @@
     border-radius: 5px;
  }
 
-button {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+ .buttonContainer {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    right: 250px;
 }
 
-button:hover {
-    background-color: #45a049; 
+.button {
+    background-color: #5AB5F0;
+    color: white;
+    padding: 15px 37px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+    transition: background-color 0.3s ease;
 }
 
 .image-container {

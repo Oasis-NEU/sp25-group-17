@@ -1,0 +1,100 @@
+/* Import a new font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Apply background color to the whole page */
+body {
+  background-color: #FFFCC9; /* Soft Yellow */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* New Stylish Font */
+}
+
+/* Matches container styles */
+.matches-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #5AB5F0; /* Light Blue */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Title styling */
+h2 {
+  color: white;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Filter input box */
+.filter-input {
+  width: 80%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 2px solid #83C89A; /* Green border */
+  background: white;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Matches list */
+.matches-list {
+  max-height: 800px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: white;
+  padding: 15px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Match items */
+.match-item {
+    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #83C89A; /* Green Separator */
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background: #fff;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.match-item:hover {
+  background-color: #f7f7f7; /* Light hover effect */
+  cursor: pointer;
+  transform: scale(1.02); /* Slight scale effect */
+}
+
+.match-item strong {
+  color: #5AB5F0; /* Light Blue */
+  font-weight: 600;
+}
+
+/* Heart Button */
+.heart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.heart {
+  color: #83C89A; /* Default Green */
+  transition: transform 0.2s, color 0.3s;
+}
+
+.heart.liked {
+  color: red; /* Red when liked */
+  transform: scale(1.2); /* Slight pop effect */
+}
+
+.match-item:last-child {
+  border-bottom: none;
+}

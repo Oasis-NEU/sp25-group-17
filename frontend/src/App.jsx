@@ -1,11 +1,18 @@
-// write java script and html at the same time 
+import BucketList from "./pages/BucketList";  
+import Matches from "./pages/Matches";  
+
 
 function App() {
   return (
     <div>
-      Welcome to the Site
-    </div>
-  )
+    <BucketList />
+
+    <Matches />
+
+  </div>
+
+    
+  );
 }
 
 export default App;

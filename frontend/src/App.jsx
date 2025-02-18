@@ -1,10 +1,11 @@
 // write java script and html at the same time 
 
+import Recommendations from "./pages/Recommendations";
+
+
 function App() {
   return (
-    <div>
-      Welcome
-    </div>
+    <Recommendations />
   )
 }
 

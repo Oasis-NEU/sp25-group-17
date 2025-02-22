@@ -11,7 +11,7 @@ function SignUp() {
                           alt="Bucket Image" 
                           className="image"
                         />
-      <div className="form">
+      <div className="form1">
         <input type="text" placeholder="Full Name" className="input" />
         <input type="email" placeholder="Email" className="input" />
         <input type="text" placeholder="Username" className="input" />

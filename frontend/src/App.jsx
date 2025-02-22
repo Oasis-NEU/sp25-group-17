@@ -21,11 +21,11 @@ function App() {
     
     {/* <Landing /> */}
 
-    <LogIn />
+    {/* <LogIn /> */}
 
-    {/* <SignUp />
+     <SignUp />
 
-    <Recommendations /> */}
+    {/* <Recommendations /> */} 
 
 
   </div>

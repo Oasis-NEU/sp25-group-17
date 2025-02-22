@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 850px;
+
+    background-color: #5AB5F0;
+    flex-direction: column;
+    position: relative;
+      border-radius: 10px;
+}
+
+.profile-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 360px; 
+    width: 80%;
+    height:80%;
+    /* width: 1000px; */
+    
+    background-color: #5AB5F0;
+    position: relative;
+    padding: 20px;
+  
+}
+
+.message1 {
+    font-size: 45px;
+    color: #FFFCC9;
+    margin-top: 100px;
+    font-weight: bold;
+    font-family: Poppins, sans-serif;
+}
+
+.image {
+    max-width: 150px;
+    height: auto;
+    top: 500px;
+    left: 260px;
+    position: absolute;
+}
+
+.form {
+    display: flex;
+    /* color: #1F76AE; */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+ }
+
+.input1 {
+    background-color: white;
+    color: #1F76AE;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 3px solid #83C89A;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    
+ }
+
+ 
+.input1::placeholder {
+    color: #1F76AE;  /* Ensures full opacity */
+}
+
+
+
+ .buttonContainer {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    right: 250px;
+}
+
+.button {
+    background-color: #83C89A;
+    color: #1F76AE;
+    font-family: 'Poppins', sans-serif;
+    padding: 15px 37px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+    transition: background-color 0.3s ease;
+}
+
+.button::hover{
+    background-color:#FFFCC9;
+    transform: scale(1.05);
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-placeholder {
+    width: 200px; 
+    border-radius: 50%;
+    /* background-color: #ddd; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    /* color: #666; */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* border: 2px solid #aaa;  */
+
+    position: absolute;
+    top: 20px;  
+    right: 20px;
+}
+

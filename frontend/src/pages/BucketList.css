@@ -9,7 +9,7 @@ body {
 
 /* General Container */
 .bucket-container {
-  max-width: 600px;
+  width: 1000px;
   margin: 40px auto;
   padding: 20px;
   background: #5AB5F0; /* Light Blue */
@@ -20,7 +20,7 @@ body {
 
 /* Title Styling */
 h1 {
-  color: white;
+  color: #FFFCC9;
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -28,7 +28,7 @@ h1 {
 
 /* Bucket Image */
 .bucket-img {
-  max-width: 150px;
+  max-width: 400px;
   height: auto;
   margin-bottom: 20px;
 }
@@ -47,10 +47,12 @@ h1 {
   padding: 12px;
   border-bottom: 1px solid #83C89A;
   font-size: 16px;
-  color: #333;
+  color: #1F76AE;
   background: #fff;
   transition: background-color 0.3s ease, transform 0.2s;
 }
+
+
 
 .bucket-item:hover {
   background-color: #f7f7f7;
@@ -73,11 +75,17 @@ h1 {
   width: 250px;
   background: white;
   font-size: 16px;
+  color: #1F76AE;
 }
 
-.add-button {
-  background-color: #5AB5F0; /* Matching color */
-  color: white;
+.input-box::placeholder {
+  color:#1F76AE;
+}
+
+.add-button1 {
+  width: 200px;
+  background-color: #83C89A; /* Matching color */
+  color: #3a9ac5;
   border: none;
   padding: 12px 15px;
   border-radius: 8px;
@@ -86,7 +94,7 @@ h1 {
   transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.add-button:hover {
-  background-color: #3a9ac5;
+.add-button1:hover {
+  background-color: #FFFCC9;
   transform: scale(1.05);
 }

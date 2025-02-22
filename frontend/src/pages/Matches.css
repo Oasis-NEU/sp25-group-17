@@ -11,7 +11,8 @@ body {
 
 /* Matches container styles */
 .matches-container {
-  max-width: 600px;
+  width: 1000px;
+  /* height: 800px; */
   margin: 40px auto;
   padding: 20px;
   background: #5AB5F0; /* Light Blue */
@@ -22,7 +23,7 @@ body {
 
 /* Title styling */
 h2 {
-  color: white;
+  color: #FFFCC9;
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -60,7 +61,7 @@ h2 {
   border-bottom: 1px solid #83C89A; /* Green Separator */
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
-  color: #333;
+  color: #1F76AE;
   background: #fff;
   transition: background-color 0.3s ease, transform 0.2s;
 }
@@ -72,12 +73,14 @@ h2 {
 }
 
 .match-item strong {
-  color: #5AB5F0; /* Light Blue */
+  color: #83C89A; /* Light Blue */
   font-weight: 600;
+  font-size: 30px;
 }
 
 /* Heart Button */
 .heart-button {
+  width: 60px;
   background: none;
   border: none;
   cursor: pointer;

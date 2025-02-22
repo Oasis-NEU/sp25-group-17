@@ -1,5 +1,5 @@
 import { useState } from "react";
-import bucketImage from "../assets/bucket.png"; // Ensure this path is correct
+import bucketImage from "../assets/Component 6.png"; // Ensure this path is correct
 import "./BucketList.css";
 
 const BucketList = () => {
@@ -39,7 +39,7 @@ const BucketList = () => {
         />
         <button 
           onClick={handleAddItem} 
-          className="add-button"
+          className="add-button1"
         >
           Add
         </button>

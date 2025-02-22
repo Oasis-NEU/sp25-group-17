@@ -19,9 +19,9 @@ function App() {
 
     {/* <HomePage /> */}
     
-    <Landing />
+    {/* <Landing /> */}
 
-    {/* <LogIn /> */}
+    <LogIn />
 
     {/* <SignUp />
 

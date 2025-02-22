@@ -1,14 +1,17 @@
 import './LogIn.css';
+import bucketImage from "../assets/Component 6.png";
+import { BiRadioCircle } from 'react-icons/bi';
 
 function LogIn() {
   return (
     <div className="container">
-      <h1 className="message">Log in with username/password!</h1>
       <img 
-        src="https://img.freepik.com/premium-vector/hand-drawn-kids-drawing-cartoon-vector-illustration-cute-plastic-buckets-with-water-icon-isolated_760559-818.jpg?semt=ais_hybrid" 
-        alt="Bucket Image"
-        className="image"
-      />
+                    src={bucketImage} 
+                    alt="Bucket Image" 
+                    className="image"
+                  />
+      <h1 className="title">Bucket Buddies</h1>
+      <h2 className="message1">Log in with username and password!</h2>
       <div className="form">
         <input type="text" placeholder="Username" className="input" />
         <input type="password" placeholder="Password" className="input" />

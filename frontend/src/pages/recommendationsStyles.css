@@ -1,51 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
     background-color: #faf7b6;
     margin: 0;
-  height: 100vh; 
   display: flex; 
   justify-content: center; 
   align-items: center; 
+  font-family: Poppins, sans-serif;
 
 }
 
 .heading {
     text-align: center;
+    font-family: Poppins, sans-serif;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0 auto;
+    width: 1000px;
+    margin: 50px;
     padding: 10px; 
     box-sizing: border-box;
 }
 
 .box {
-    background-color: #ffffff;
+    background-color: #5AB5F0;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 100%;
+    width: 1000px;
+    height: 800px;
     max-width: 1000px; 
     box-sizing: border-box;
 }
 
-.blue-box {
-    background-color: #5AB5F0;
-    border-radius: 10px;
-    padding: 20px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 90%; 
-    width: 100%; 
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    box-sizing: border-box; 
-}
 
 
   .grid-container {
@@ -62,6 +53,11 @@ body {
 .input-container {
     margin-top: 30px;
   }
+
+  .text-input::placeholder {
+    font-family: Poppins, sans-serif;
+    color: #1F76AE;
+  }
   
   .input-container p {
     font-size: 1.2rem;
@@ -72,23 +68,28 @@ body {
     width: 70%;
     padding: 10px;
     font-size: 1rem;
-    border: 2px solid #ccc;
+    border: 2px solid #83C89A;
     border-radius: 5px;
     margin-right: 10px;
+    color: #1F76AE;
+    font-family: Poppins, sans-serif;
+    
 }
 
 .add-button {
     margin-top: 10px;
+    font-family: Poppins, sans-serif;
     padding: 12px 20px; 
     font-size: 1.1rem; 
-    background-color: #5AB5F0; 
+    background-color: #83C89A; 
     border-radius: 8px; 
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .blue-button-add-button {
-    background-color: #5ab5f0;
-    color: white;
+    background-color: #83C89A;
+    width: 70px;
+    color: #faf7b6;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -98,8 +99,8 @@ body {
 }
 
 .blue-button {
-    background-color: #5ab5f0;
-    color: white;
+    background-color: #83C89A;
+    color: #1F76AE;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -169,9 +170,10 @@ body {
         max-width: 150px; 
     }
 
-    .text-input {
+    .text-input{
         width: 90%; 
         margin-bottom: 10px; 
+        color:#1F76AE;
     }
 
     .add-button {

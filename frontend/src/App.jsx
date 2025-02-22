@@ -23,9 +23,9 @@ function App() {
 
     {/* <LogIn /> */}
 
-     <SignUp />
+     {/* <SignUp /> */}
 
-    {/* <Recommendations /> */} 
+    <Recommendations /> 
 
 
   </div>

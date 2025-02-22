@@ -6,11 +6,13 @@ import SignUp from "./pages/SignUp";
 import HomePage from "./pages/LogIn";
 import Landing from "./pages/Landing";
 import LogIn from "./pages/LogIn";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 
 
 function App() {
-  return (
-    <div>
+  // return (
+  //   <div>
     {/* <BucketList /> */}
 
     {/* <Matches /> */}
@@ -24,13 +26,27 @@ function App() {
     {/* <LogIn /> */}
 
      {/* <SignUp /> */}
+    //  <Header />
 
-    <Recommendations /> 
+    {/* <Recommendations />  */}
 
 
-  </div>
+  {/* </div>
 
     
+  ); */}
+
+  return (
+    <Router>
+      <Header />
+      <Routes>
+        
+        <Route path="/mybucket" element={<BucketList />} />
+        <Route path="/matches" element={<Matches />} />
+        {/* <Route path="/messages" element={<Messages />} /> */}
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </Router>
   );
 }
 

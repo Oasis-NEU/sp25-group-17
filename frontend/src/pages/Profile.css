@@ -5,15 +5,16 @@
     justify-content: center;
     align-items: center;
     width: 1000px;
-    height: 850px;
+    height: 1000px;
+    padding: 20px;
 
     background-color: #5AB5F0;
     flex-direction: column;
     position: relative;
-      border-radius: 10px;
+      /* border-radius: 10px; */
 }
 
-.profile-layout {
+/* .profile-layout {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,20 +22,27 @@
     width: 80%;
     height:80%;
     /* width: 1000px; */
-    
+/*     
     background-color: #5AB5F0;
     position: relative;
     padding: 20px;
   
+} */ 
+
+.message2 {
+    font-size: 65px;
+    color: #FFFCC9; /* Ensure contrast with background */
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    text-align: center; /* Center text */
+    width: 100%; /* Ensures centering */
+    margin: 20px 0; /* Adjust spacing */
+    position: absolute;
+    top: 0px; /* Adjust based on preference */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.message1 {
-    font-size: 45px;
-    color: #FFFCC9;
-    margin-top: 100px;
-    font-weight: bold;
-    font-family: Poppins, sans-serif;
-}
 
 .image {
     max-width: 150px;
@@ -52,6 +60,7 @@
     gap: 10px;
     width: 100%;
     max-width: 300px;
+    margin-top: -500px;
  }
 
 .input1 {
@@ -82,11 +91,11 @@
     right: 250px;
 }
 
-.button {
+.button1 {
     background-color: #83C89A;
     color: #1F76AE;
     font-family: 'Poppins', sans-serif;
-    padding: 15px 37px;
+    padding: 15px 100px;
     font-size: 16px;
     cursor: pointer;
     border: none;

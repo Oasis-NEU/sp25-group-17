@@ -4,9 +4,9 @@ import ProfileImg from "../assets/Profile Icon.png";
 function Profile() {
     return (
         <div className="container1">
-            <h1 className="message1">Your Profile</h1>
+            <h1 className="message2">Your Profile</h1>
 
-            <div className="profile-layout">
+            
                 <div className="form">
                     <input type="text" placeholder="Full Name" className="input1" />
                     <input type="text" placeholder="Username" className="input1" />
@@ -15,7 +15,7 @@ function Profile() {
                     <input type="number" placeholder="Phone Number" className="input1" />
                     <input type="text" placeholder="School/University" className="input1" />
                     <input type="text" placeholder="Location" className="input1" />
-                    <button className="button">Save Profile</button>
+                    <button className="button1">Save Profile</button>
                 </div>
 
                 <div className="image-container">
@@ -25,7 +25,7 @@ function Profile() {
                             className="profile-placeholder"
                           />
                 </div>
-            </div>
+            
         </div>
     );
 }

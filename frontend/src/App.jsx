@@ -8,7 +8,7 @@ import Landing from "./pages/Landing";
 import LogIn from "./pages/LogIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-
+import { supabase } from './supabase'
 
 function App() {
   return (

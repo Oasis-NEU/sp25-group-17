@@ -13,7 +13,7 @@ import Header from "./components/Header";
 function App() {
   return (
      <div>
-    {/* <BucketList /> */}
+    <BucketList />
 
     {/* <Matches /> */}
 
@@ -23,7 +23,7 @@ function App() {
     
     {/* <Landing /> */}
 
-    <LogIn />
+    {/* <LogIn /> */}
 
      {/* <SignUp /> */}
     {/* //  <Header /> */}

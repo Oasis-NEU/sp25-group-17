@@ -3,27 +3,15 @@ import bucketImage from "../assets/Component 6.png";
 import "./BucketList.css";
 import { supabase } from "../supabase";
 
-const BucketList = () => {
-  const [bucketItems, setBucketItems] = useState([]); 
+function BucketList(){ 
   const [newItem, setNewItem] = useState(""); 
   const [username] = useState("username"); 
+  const [bucketItems, setBucketItems] = useState([]);
 
-  // Function to fetch items from the Supabase table
-  const fetchItems = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("Bucket List Items")
-        .select("*");
-      if (error) throw error;
-      console.log("Fetched items:", data);
-      setBucketItems(data); 
-    } catch (error) {
-      console.error("Error fetching items:", error.message);
-    }
-  };
+
 
   // Add a new item to the Supabase database
-  const addItem = async () => {
+  async function addItem(){
     if (newItem.trim() === "") return; 
 
     try {
@@ -42,12 +30,26 @@ const BucketList = () => {
     }
   };
 
-  // Fetch the items when the component mounts
+  // Function to fetch items from the Supabase table
+  async function fetchItems() {
+    try {
+      const { data, error } = await supabase
+        .from("Bucket List Items")
+        .select("*");
+      if (error) throw error;
+      console.log("Fetched items:", data);
+      setBucketItems(data); 
+    } catch (error) {
+      console.error("Error fetching items:", error.message);
+    }
+  };
+
+
   useEffect(() => {
     fetchItems();
   }, []);
 
-  // This will re-render the list of bucket items
+
   return (
     <div className="bucket-container flex flex-col items-center p-6 min-h-screen">
       <h1 className="text-white text-2xl font-semibold mb-4">My Bucket List</h1>
@@ -58,7 +60,6 @@ const BucketList = () => {
       />
 
       <ul className="bucket-list w-full max-w-md p-4 rounded-lg">
-        {}
         {bucketItems.length > 0 ? (
           bucketItems.map((item, index) => (
             item && item.bucket_item ? (

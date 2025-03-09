@@ -8,6 +8,22 @@ function BucketList(){
   const [username] = useState("username"); 
   const [bucketItems, setBucketItems] = useState([]);
 
+   // Function to fetch items from the Supabase table
+   async function fetchItems() {
+    try {
+      const { data, error } = await supabase
+      .from("Bucket List Items")
+      .select("item_id, bucket_item")
+      if (error) {
+        console.error("Error fetching items:", error.message);
+        throw error;
+      }
+      console.log("Fetched_items:", data);
+      setBucketItems(data); 
+    } catch (error) {
+      console.error("Error fetching items:", error.message);
+    }
+  };
 
 
   // Add a new item to the Supabase database
@@ -23,32 +39,21 @@ function BucketList(){
       if (error) throw error;
       
       console.log("Added item:", data); 
-      fetchItems();
+      await fetchItems();
       setNewItem(""); // Clear the input field
     } catch (error) {
       console.error("Error adding item:", error.message);
     }
   };
 
-  // Function to fetch items from the Supabase table
-  async function fetchItems() {
-    try {
-      const { data, error } = await supabase
-        .from("Bucket List Items")
-        .select("*");
-      if (error) throw error;
-      console.log("Fetched items:", data);
-      setBucketItems(data); 
-    } catch (error) {
-      console.error("Error fetching items:", error.message);
-    }
-  };
-
-
+ 
   useEffect(() => {
     fetchItems();
   }, []);
 
+  useEffect(() => {
+    console.log("bucketItems state updated:", bucketItems);
+  }, [bucketItems]);
 
   return (
     <div className="bucket-container flex flex-col items-center p-6 min-h-screen">

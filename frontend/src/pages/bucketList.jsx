@@ -8,8 +8,6 @@ function BucketList(){
   const [username] = useState("username"); 
   const [bucketItems, setBucketItems] = useState([]);
 
-
-
   // Add a new item to the Supabase database
   async function addItem(){
     if (newItem.trim() === "") return; 
@@ -34,7 +32,7 @@ function BucketList(){
   async function fetchItems() {
     try {
       const { data, error } = await supabase
-        .from("Bucket List Items")
+        .from("User Information")
         .select("*");
       if (error) throw error;
       console.log("Fetched items:", data);

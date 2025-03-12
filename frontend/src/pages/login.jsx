@@ -5,11 +5,11 @@ import { BiRadioCircle } from 'react-icons/bi';
 function LogIn() {
   return (
     <div className="container">
-      <img 
-                    src={bucketImage} 
-                    alt="Bucket Image" 
-                    className="image"
-                  />
+      <img
+        src={bucketImage}
+        alt="Bucket Image"
+        className="image"
+      />
       <h1 className="title">Bucket Buddies</h1>
       <h2 className="message1">Log in with username and password!</h2>
       <div className="form">

@@ -3,7 +3,7 @@ import Matches from "./pages/Matches";
 import Profile from "./pages/Profile";
 import Recommendations from "./pages/Recommendations";
 import SignUp from "./pages/SignUp";
-import HomePage from "./pages/LogIn";
+import HomePage from "./pages/homePage";
 import Landing from "./pages/Landing";
 import LogIn from "./pages/LogIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -12,26 +12,29 @@ import Header from "./components/Header";
 
 function App() {
   return (
-     <div>
-    <BucketList />
+    <Router>
+    <Recommendations />
+    </Router>
+  //    <div>
+  //   <BucketList />
 
-    {/* <Matches /> */}
+  //   {/* <Matches /> */}
 
-    {/* <Profile /> */}
+  //   {/* <Profile /> */}
 
-    {/* <HomePage /> */}
+  //   {/* <HomePage /> */}
     
-    {/* <Landing /> */}
+  //   {/* <Landing /> */}
 
-    {/* <LogIn /> */}
+  //   {/* <LogIn /> */}
 
-     {/* <SignUp /> */}
-    {/* //  <Header /> */}
+  //    {/* <SignUp /> */}
+  //   {/* //  <Header /> */}
 
-    {/* <Recommendations />  */}
+  //   {/* <Recommendations />  */}
 
 
-   </div>
+  //  </div>
 
     
   );

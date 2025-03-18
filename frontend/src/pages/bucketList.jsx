@@ -32,7 +32,7 @@ function BucketList(){
   async function fetchItems() {
     try {
       const { data, error } = await supabase
-        .from("User Information")
+        .from("Bucket List Items")
         .select("*");
       if (error) throw error;
       console.log("Fetched items:", data);

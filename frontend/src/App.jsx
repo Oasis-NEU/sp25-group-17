@@ -13,7 +13,7 @@ import Header from "./components/Header";
 function App() {
   return (
     <Router>
-    <Recommendations />
+    <SignUp />
     </Router>
   //    <div>
   //   <BucketList />

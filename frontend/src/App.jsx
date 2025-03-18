@@ -8,12 +8,13 @@ import Landing from "./pages/Landing";
 import LogIn from "./pages/LogIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import { Navigate } from "react-router-dom";
 
 
 function App() {
-  return (
-     <div>
-    <BucketList />
+  // return (
+  //    <div>
+  //   <BucketList />
 
     {/* <Matches /> */}
 
@@ -30,24 +31,66 @@ function App() {
 
     {/* <Recommendations />  */}
 
-
+{/* 
    </div>
 
     
-  );
+  ); */}
 
-  // return (
-  //   <Router>
-  //     <Header />
-  //     <Routes>
+  return (
+     <Router>
+      <div className="App">
         
-  //       <Route path="/mybucket" element={<BucketList />} />
-  //       <Route path="/matches" element={<Matches />} />
-  //       {/* <Route path="/messages" element={<Messages />} /> */}
-  //       <Route path="/profile" element={<Profile />} />
-  //     </Routes>
-  //   </Router>
-  // );
+        <Routes>
+        <Route path="/" element={<Landing />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route 
+            path="/mybucket" 
+            element={
+              <>
+                <Header />
+                <BucketList />
+              </>
+            } 
+          />
+          
+          <Route 
+            path="/matches" 
+            element={
+              <>
+                <Header />
+                <Matches />
+              </>
+            } 
+          />
+          
+          {/* <Route 
+            path="/messages" 
+            element={
+              <>
+                <Header />
+                <Messages />
+              </>
+            } 
+          /> */}
+          
+          <Route 
+            path="/profile" 
+            element={
+              <>
+                <Header />
+                <Profile />
+              </>
+            } 
+          />
+          
+          {/* Redirect unknown routes to home */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </Router>
+   );
 }
 
 export default App;

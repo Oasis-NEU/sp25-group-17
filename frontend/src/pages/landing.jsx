@@ -1,8 +1,11 @@
 import './Landing.css';
 import BucketImg from '../assets/Component 6.png';
+import { useNavigate } from 'react-router-dom';
 
 
 function Landing() {
+  const navigate = useNavigate();
+
   return (
     <div className={"container"}>
       <img 
@@ -17,8 +20,8 @@ function Landing() {
         to complete your bucket list!
       </p>  
       <div className={"buttonContainer"}>
-        <button className={"loginButton"}>Log In</button>
-        <button className={"SignUpButton"}>Sign Up</button>
+        <button className={"loginButton"} onClick={() => navigate('/login')}>Log In</button>
+        <button className={"SignUpButton"} onClick={() => navigate('/signup')}>Sign Up</button>
       </div>
     </div>
   );

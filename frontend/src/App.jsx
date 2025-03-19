@@ -12,8 +12,15 @@ import Header from "./components/Header";
 
 function App() {
   return (
+    // <Router>
+    //   <Routes>
+    //     <Route path="/login" element={<LogIn />} />
+    //    <Route path="/matches" element={<Matches />} /> 
+    //   </Routes>
+    // </Router>
+
     <Router>
-    <SignUp />
+    <LogIn/>
     </Router>
   //    <div>
   //   <BucketList />

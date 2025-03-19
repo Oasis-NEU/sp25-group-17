@@ -17,40 +17,76 @@ function Profile() {
     const [loading, setLoading] = useState(true);
     const [userId, setUserId] = useState(null);
 
-    // fetching the user's profile data from Supabase
+    // // fetching the user's profile data from Supabase
+    // async function fetchProfile() {
+    //     try {
+    //         const { data: { user } } = await supabase.auth.getUser();
+    //         if (!user) {
+    //             console.error("No user logged in.");
+    //             return;
+    //         }
+
+    //         setUserId(user.id);
+
+    //         const { data, error } = await supabase
+    //             .from("User Information")
+    //             .select("*")
+    //             .eq("user_id", user.id)
+    //             .single();
+            
+    //         if (error) throw error;
+
+    //         setProfile({
+    //             fullName: `${data.first_name} ${data.last_name}`,
+    //             username: data.username,
+    //             birthday: data.birthday,
+    //             email: data.email,
+    //             phoneNumber: data.phone_number,
+    //             school: data.school,
+    //             location: data.location,
+    //         });
+    //      } catch (error) {
+    //         console.error("Error fetching profile: ", error.message);
+    //      }   finally {
+    //         setLoading(false);
+    //      }
+    //  }
+
     async function fetchProfile() {
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) {
-                console.error("No user logged in.");
-                return;
-            }
-
-            setUserId(user.id);
-
             const { data, error } = await supabase
                 .from("User Information")
                 .select("*")
-                .eq("user_id", user.id)
-                .single();
-            
+                .order("user_id", { ascending: true }) 
+                .limit(1) 
+    
             if (error) throw error;
-
+            if (!data || data.length === 0) {
+                console.error("No user data found in the database.");
+                return;
+            }
+    
+            const userData = data[0]; 
+            setUserId(userData.user_id); 
+    
             setProfile({
-                fullName: `${data.first_name} ${data.last_name}`,
-                username: data.username,
-                birthday: data.birthday,
-                email: data.email,
-                phoneNumber: data.phone_number,
-                school: data.school,
-                location: data.location,
+                fullName: `${userData.first_name} ${userData.last_name}`,
+                username: userData.username,
+                birthday: userData.birthday,
+                email: userData.email,
+                phoneNumber: userData.phone_number,
+                school: userData.school,
+                location: userData.location,
             });
-         } catch (error) {
+    
+        } catch (error) {
             console.error("Error fetching profile: ", error.message);
-         }   finally {
+        } finally {
             setLoading(false);
-         }
-     }
+        }
+    }
+    
+
 
      useEffect(() => {
         fetchProfile();

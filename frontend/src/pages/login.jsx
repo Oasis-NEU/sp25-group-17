@@ -4,7 +4,7 @@ import { BiRadioCircle } from 'react-icons/bi';
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import { supabase } from "../supabase";
-import 
+ 
 
 function LogIn() {
   const navigate = useNavigate();

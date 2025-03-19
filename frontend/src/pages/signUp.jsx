@@ -2,8 +2,12 @@ import './SignUp.css';
 import bucketImage from "../assets/Component 6.png";
 import React, { useState } from "react";
 import { supabase } from "../supabase";
+import { useNavigate} from "react-router-dom";
+
 
 function SignUp() {
+  const navigate = useNavigate();
+
   const [userData, setUser] = useState({
     username: "",
     email: "",
@@ -57,6 +61,7 @@ function SignUp() {
         } else {
           // Only alert on success if no errors were returned
           alert("Profile Successfully Created!");
+          navigate("/login")
         }
       
     } catch (error) {
@@ -80,40 +85,40 @@ function SignUp() {
         <input 
         name="first_name"
         value={userData.first_name}
-        onChange={(e) => handleChange(e)} 
+        onChange={handleChange} 
           type="text"
           placeholder="First Name"
           className="input" />
         <input 
         name="last_name"
         value={userData.last_name}
-        onChange={(e) => handleChange(e)} 
+        onChange={handleChange}  
           type="text"
           placeholder="Last Name"
           className="input" />
         <input 
         name="email"
         value={userData.email}
-        onChange={(e) => handleChange(e)} 
+        onChange={handleChange}  
         type="email" placeholder="Email" className="input" />
         <input 
         name="username"
         value={userData.username}
-        onChange={(e) => handleChange(e)} 
+        onChange={handleChange} 
         type="text" placeholder="Username" className="input" />
         <input 
         name="password"
         value={userData.password}
-        onChange={(e) => handleChange(e)} 
+        onChange={handleChange} 
         type="password" placeholder="Password" className="input" />
         <input 
         name="confirmPassword"
         value={userData.confirmPassword}
-        onChange={(e) => handleChange(e)} 
+        onChange={handleChange} 
         type="password" placeholder="Confirm Password" className="input" />
         <button
-          onClick={createUser}
-          className="button">Sign Up</button>
+          className="button"
+          onClick={createUser}>Sign Up</button>
       </div>
     </div>
   );

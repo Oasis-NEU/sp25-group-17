@@ -6,12 +6,101 @@ import SignUp from "./pages/SignUp";
 import HomePage from "./pages/homePage";
 import Landing from "./pages/Landing";
 import LogIn from "./pages/LogIn";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
 import Header from "./components/Header";
 
 
 function App() {
   return (
+    <Router basename="/">
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route 
+            path="/mybucket" 
+            element={<><Header /><BucketList /></>} 
+          />
+          <Route 
+            path="/matches" 
+            element={<><Header /><Matches /></>} 
+          />
+          <Route 
+            path="/profile" 
+            element={<><Header /><Profile /></>} 
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+
+    </Router>
+  );
+}
+
+
+// function App() {
+//   return (
+//     <Router>
+//      <div className="App">
+       
+//        <Routes>
+//        <Route path="/" element={<Landing />} />
+//          <Route path="/SignUp" element={<SignUp />} />
+//          <Route path="/login" element={<LogIn />} />
+//          <Route 
+//            path="/mybucket" 
+//            element={
+//              <>
+//                <Header />
+//                <BucketList />
+//              </>
+//            } 
+//          />
+         
+//          <Route 
+//            path="/matches" 
+//            element={
+//              <>
+//                <Header />
+//                <Matches />
+//              </>
+//            } 
+//          />
+         
+//          {/* <Route 
+//            path="/messages" 
+//            element={
+//              <>
+//                <Header />
+//                <Messages />
+//              </>
+//            } 
+//          /> */}
+         
+//          <Route 
+//            path="/profile" 
+//            element={
+//              <>
+//                <Header />
+//                <Profile />
+//              </>
+//            } 
+//          />
+         
+//          {/* Redirect unknown routes to home */}
+//          <Route path="*" element={<Navigate to="/" />} />
+//        </Routes>
+//      </div>
+//    </Router>
+//   );
+ 
+ 
+ 
+ 
+ 
+ 
+  //return (
     // <Router>
     //   <Routes>
     //     <Route path="/login" element={<LogIn />} />
@@ -19,45 +108,16 @@ function App() {
     //   </Routes>
     // </Router>
 
-    <Router>
-    <LogIn/>
-    </Router>
+    // <Router>
+    // <LogIn/>
+    // </Router>
   //    <div>
   //   <BucketList />
 
-  //   {/* <Matches /> */}
-
-  //   {/* <Profile /> */}
-
-  //   {/* <HomePage /> */}
-    
-  //   {/* <Landing /> */}
-
-  //   {/* <LogIn /> */}
-
-  //    {/* <SignUp /> */}
-  //   {/* //  <Header /> */}
-
-  //   {/* <Recommendations />  */}
-
-
-  //  </div>
+  
 
     
-  );
-
-  // return (
-  //   <Router>
-  //     <Header />
-  //     <Routes>
-        
-  //       <Route path="/mybucket" element={<BucketList />} />
-  //       <Route path="/matches" element={<Matches />} />
-  //       {/* <Route path="/messages" element={<Messages />} /> */}
-  //       <Route path="/profile" element={<Profile />} />
-  //     </Routes>
-  //   </Router>
-  // );
-}
+  //);
+// }
 
 export default App;

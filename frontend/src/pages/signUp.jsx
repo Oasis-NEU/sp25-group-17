@@ -38,38 +38,46 @@ function SignUp() {
       return;
     }
 
-    try {
-      const { userData, error } = await supabase
-        .from("User Information")
-        .insert({
-          username: username,
+    const {data, error} = await supabase.auth.signUp(
+      {email, password},
+    { shouldCreateUser: true}
+  );
+
+    if (error) {
+      // Check for specific error messages
+      if (error.message.includes("User Information_email_key")) {
+        alert("Error creating user: Account with this email already exists");
+      } else if (error.message.includes("Information_username_key")) {
+        alert("Error creating user: Account with this username already exists");
+      } else {
+        alert("Error creating user: " + error.message);
+      }
+    }
+
+    const user = data.user;
+
+    if(user) {
+      const {error: insertError } = await supabase
+      .from("User Information")
+      .insert([{
+         username: username,
           email: email,
           first_name: first_name,
           last_name: last_name,
           password: password
-        })
-        .single();
-        if (error) {
-          // Check for specific error messages
-          if (error.message.includes("User Information_email_key")) {
-            alert("Error creating user: Account with this email already exists");
-          } else if (error.message.includes("Information_username_key")) {
-            alert("Error creating user: Account with this username already exists");
-          } else {
-            alert("Error creating user: " + error.message);
-          }
-        } else {
-          // Only alert on success if no errors were returned
-          alert("Profile Successfully Created!");
-          navigate("/login")
-        }
-      
-    } catch (error) {
-      
-      console.error("Error creating user:", error.message);
+      }]);
+
+      if (insertError){
+        alert("Error saving info: " + insertError.message);
+        return;
+      }
+
+      alert("Account created! Please check your email to verify your account.");
+      navigate("/login");
     }
-    
-  };
+  }
+
+  
 
 
   return (
@@ -125,3 +133,71 @@ function SignUp() {
 }
 
 export default SignUp;
+
+//   try {
+  //     const { userData, error } = await supabase
+  //       .from("User Information")
+  //       .insert({
+  //         username: username,
+  //         email: email,
+  //         first_name: first_name,
+  //         last_name: last_name,
+  //         password: password
+  //       })
+  //       .single();
+  //   if (error) {
+  //     // Check for specific error messages
+  //     if (error.message.includes("User Information_email_key")) {
+  //       alert("Error creating user: Account with this email already exists");
+  //     } else if (error.message.includes("Information_username_key")) {
+  //       alert("Error creating user: Account with this username already exists");
+  //     } else {
+  //       alert("Error creating user: " + error.message);
+  //     }
+  //   } else {
+  //     // Only alert on success if no errors were returned
+  //     alert("Profile Successfully Created!");
+  //     navigate("/login");
+  //   } catch (error) {
+      
+  //         console.error("Error creating user:", error.message);
+  //   }
+  
+  
+  
+  // };
+  
+
+
+    // try {
+    //   const { userData, error } = await supabase
+    //     .from("User Information")
+    //     .insert({
+    //       username: username,
+    //       email: email,
+    //       first_name: first_name,
+    //       last_name: last_name,
+    //       password: password
+    //     })
+    //     .single();
+  //       if (error) {
+  //         // Check for specific error messages
+  //         if (error.message.includes("User Information_email_key")) {
+  //           alert("Error creating user: Account with this email already exists");
+  //         } else if (error.message.includes("Information_username_key")) {
+  //           alert("Error creating user: Account with this username already exists");
+  //         } else {
+  //           alert("Error creating user: " + error.message);
+  //         }
+  //       } else {
+  //         // Only alert on success if no errors were returned
+  //         alert("Profile Successfully Created!");
+  //         navigate("/login")
+  //       }
+      
+  //   } catch (error) {
+      
+  //     console.error("Error creating user:", error.message);
+  //   }
+    
+  // };

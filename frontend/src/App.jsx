@@ -8,9 +8,22 @@ import Landing from "./pages/Landing";
 import LogIn from "./pages/LogIn";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
 import Header from "./components/Header";
+import { useEffect, useState } from "react";
+import { supabase } from "./supabase";
 
 
 function App() {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({data}) => setSession(data.session));
+    const {data: authListener} = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return() => authListener.subscription.unsubscribe();
+  }, []);
+
   return (
     <Router basename="/">
       <div className="App">
@@ -20,15 +33,15 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route 
             path="/mybucket" 
-            element={<><Header /><BucketList /></>} 
+            element={session ? <><Header /><BucketList /></> : <Navigate to='/login' />} 
           />
           <Route 
             path="/matches" 
-            element={<><Header /><Matches /></>} 
+            element={session ? <><Header /><Matches /></>: <Navigate to='/login' />} 
           />
           <Route 
             path="/profile" 
-            element={<><Header /><Profile /></>} 
+            element={session ? <><Header /><Profile /></> : <Navigate to='/login' />} 
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

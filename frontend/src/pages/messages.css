@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    /* .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1000px;
+        height: 1000px;
+      background-color: #FFFCC9;
+      flex-direction: column;
+      position: relative;
+      }
+
+      .title {
+        font-size: 65px;
+        color:#83C89A;
+  
+        font-weight: bold;
+        font-family: Poppins, sans-serif;
+        position: absolute;
+        margin-top: -200px;
+      }
+
+      .message1 {
+        font-size: 40px;
+        color: #1F76AE;
+        font-weight: bold;
+        font-family: Poppins, sans-serif;
+        position: absolute;
+        margin-top: 390px;  /* Adjust as needed */
+        /* text-align: center;
+    }
+
+
+
+      .image {
+        width: 500px;
+        position: absolute;
+        margin-left:50px;
+        top: 10px;
+        
+    } */ 
+      

@@ -6,11 +6,11 @@ import { useNavigate} from "react-router-dom";
 import { supabase } from "../supabase";
  
 
-function LogIn() {
+function LogIn({ setSession }) {
   const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
-    username: "",
+    email: "",
     password: ""
   });
 
@@ -25,34 +25,47 @@ function LogIn() {
   async function handleLogin() {
     console.log("Logging in with:", loginData);
 
-    const { username, password } = loginData;
+    const { email, password } = loginData;
 
-    if (!username.trim() || !password.trim()) {
+    if (!email.trim() || !password.trim()) {
       alert("Please enter both username and password.");
       return;
     }
 
     try {
-      const { data, error } = await supabase
-        .from("User Information")
-        .select("*")
-        .eq("username", username)
-        .single();
+      // const { data, error } = await supabase
+      //   .from("User Information")
+      //   .select("*")
+      //   .eq("username", username)
+      //   .single();
 
-      if (error || !data) {
-        alert("Invalid username or password.");
+      // if (error || !data) {
+      //   alert("Invalid username or password.");
+      //   return;
+      // }
+      const { data , error } = await supabase.auth.signInWithPassword({
+        email: email,  // Ensure the username is actually an email if using Supabase Auth
+        password: password,
+      });
+  
+      if (error) {
+        console.error("Login Error:", error.message);
+        alert(error.message);
         return;
       }
+      const { data: { session } } = await supabase.auth.getSession();
+      setSession(session);
 
-      if (data.password !== password) {
-        alert("Incorrect password. Please try again.");
-        return;
-      }
+      // if (data.password !== password) {
+      //   alert("Incorrect password. Please try again.");
+      //   return;
+      // }
 
-      alert("Login successful!");
+      //alert("Login successful!");
       navigate("/matches");
 
     } catch (error) {
+      console.error("Error logging in:", error.message);
       console.error("Error logging in:", error.message);
       alert("An error occurred while logging in.");
     }
@@ -69,11 +82,11 @@ function LogIn() {
       <h2 className="message1">Log in with username and password!</h2>
       <div className="form">
         <input 
-          type="text" 
-          name="username"
-          placeholder="Username" 
+          type="email" 
+          name="email"
+          placeholder="Email" 
           className="input"
-          value={loginData.username}
+          value={loginData.email}
           onChange={handleChange} />
         <input 
           type="password" 

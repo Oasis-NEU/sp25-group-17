@@ -2,8 +2,10 @@ import './SignUp.css';
 import bucketImage from "../assets/Component 6.png";
 import React, { useState } from "react";
 import { supabase } from "../supabase";
-import { useNavigate} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+//import { useState, useEffect } from 'react'
+import { Auth } from '@supabase/auth-ui-react'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
 
 function SignUp() {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ function SignUp() {
     password: "",
     confirmPassword: ""
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,16 +42,40 @@ function SignUp() {
     }
 
     try {
-      const { userData, error } = await supabase
-        .from("User Information")
-        .insert({
-          username: username,
-          email: email,
-          first_name: first_name,
-          last_name: last_name,
-          password: password
-        })
-        .single();
+
+      const { data, error: authError } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+
+      });
+      if (authError) {
+        alert("Error signing up user: " + authError.message);
+        return;
+      }
+      console.log(email, password, data.user);
+      if (!data || !data.user) {
+        console.error("No user data returned from signUp.");
+        alert("No user data returned from signUp.");
+        return;
+      } else {
+        console.log(data.user);
+      }
+
+      const user = data.user;  // ✅ Fix: Extract user correctly
+        console.log("User created successfully:", user);
+
+      if (user) {
+        console.log("user auth", user)
+        const { userData, error } = await supabase
+          .from("User Information")
+          .insert({
+            user_id: user.id,
+            username: username,
+            email: email,
+            first_name: first_name,
+            last_name: last_name
+          })
+          .single();
         if (error) {
           // Check for specific error messages
           if (error.message.includes("User Information_email_key")) {
@@ -63,12 +90,16 @@ function SignUp() {
           alert("Profile Successfully Created!");
           navigate("/login")
         }
-      
+
+
+        console.log("insert successful");
+
+      }
     } catch (error) {
-      
+
       console.error("Error creating user:", error.message);
     }
-    
+
   };
 
 
@@ -82,40 +113,40 @@ function SignUp() {
         className="image"
       />
       <div className="form1">
-        <input 
-        name="first_name"
-        value={userData.first_name}
-        onChange={handleChange} 
+        <input
+          name="first_name"
+          value={userData.first_name}
+          onChange={handleChange}
           type="text"
           placeholder="First Name"
           className="input" />
-        <input 
-        name="last_name"
-        value={userData.last_name}
-        onChange={handleChange}  
+        <input
+          name="last_name"
+          value={userData.last_name}
+          onChange={handleChange}
           type="text"
           placeholder="Last Name"
           className="input" />
-        <input 
-        name="email"
-        value={userData.email}
-        onChange={handleChange}  
-        type="email" placeholder="Email" className="input" />
-        <input 
-        name="username"
-        value={userData.username}
-        onChange={handleChange} 
-        type="text" placeholder="Username" className="input" />
-        <input 
-        name="password"
-        value={userData.password}
-        onChange={handleChange} 
-        type="password" placeholder="Password" className="input" />
-        <input 
-        name="confirmPassword"
-        value={userData.confirmPassword}
-        onChange={handleChange} 
-        type="password" placeholder="Confirm Password" className="input" />
+        <input
+          name="email"
+          value={userData.email}
+          onChange={handleChange}
+          type="email" placeholder="Email" className="input" />
+        <input
+          name="username"
+          value={userData.username}
+          onChange={handleChange}
+          type="text" placeholder="Username" className="input" />
+        <input
+          name="password"
+          value={userData.password}
+          onChange={handleChange}
+          type="password" placeholder="Password" className="input" />
+        <input
+          name="confirmPassword"
+          value={userData.confirmPassword}
+          onChange={handleChange}
+          type="password" placeholder="Confirm Password" className="input" />
         <button
           className="button"
           onClick={createUser}>Sign Up</button>

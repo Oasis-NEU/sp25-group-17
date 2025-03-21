@@ -17,7 +17,6 @@ function Profile() {
     const [loading, setLoading] = useState(true);
     const [userId, setUserId] = useState(null);
 
-    // fetching the user's profile data from Supabase
     async function fetchProfile() {
         try {
             const { data: { user } } = await supabase.auth.getUser();
@@ -29,12 +28,17 @@ function Profile() {
             setUserId(user.id);
 
             const { data, error } = await supabase
-                .from("User Information")
+                .from("User Information") // Ensure table name matches
                 .select("*")
                 .eq("user_id", user.id)
-                .single();
+                .maybeSingle(); 
             
             if (error) throw error;
+            if (!data) {
+                console.warn("No profile found for user. It may not be created yet.");
+                return; // ✅ Stops execution if no profile exists
+            }
+            console.log("Fetched profile data:", data);
 
             setProfile({
                 fullName: `${data.first_name} ${data.last_name}`,
@@ -45,62 +49,47 @@ function Profile() {
                 school: data.school,
                 location: data.location,
             });
-         } catch (error) {
+        } catch (error) {
             console.error("Error fetching profile: ", error.message);
-         }   finally {
+        } finally {
             setLoading(false);
-         }
-     }
+        }
+    }
 
-    // async function fetchProfile() {
-    //     try {
-    //         const { data, error } = await supabase
-    //             .from("User Information")
-    //             .select("*")
-    //             .order("user_id", { ascending: true }) 
-    //             .limit(1) 
-    
-    //         if (error) throw error;
-    //         if (!data || data.length === 0) {
-    //             console.error("No user data found in the database.");
-    //             return;
-    //         }
-    
-    //         const userData = data[0]; 
-    //         setUserId(userData.user_id); 
-    
-    //         setProfile({
-    //             fullName: `${userData.first_name} ${userData.last_name}`,
-    //             username: userData.username,
-    //             birthday: userData.birthday,
-    //             email: userData.email,
-    //             phoneNumber: userData.phone_number,
-    //             school: userData.school,
-    //             location: userData.location,
-    //         });
-    
-    //     } catch (error) {
-    //         console.error("Error fetching profile: ", error.message);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
-    
+    useEffect(() => {
+        async function fetchSession() {
+            const { data: { user } } = await supabase.auth.getUser();
+            
+            if (user) {
+                fetchProfile(); // Fetch profile immediately on page load
+            }
+        }
 
+        fetchSession();
 
-     useEffect(() => {
-        fetchProfile();
-     }, []);
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                fetchProfile(); // Fetch profile if the user logs in
+            } else {
+                setProfile({ fullName: "", username: "", birthday: null, email: "", phoneNumber: "", school: "", location: "" }); // Reset profile
+            }
+        });
 
+        return () => {
+            if (subscription?.unsubscribe) {
+                subscription.unsubscribe(); // ✅ Properly clean up listener
+            }
+        };
+    }, []);
 
-     async function updateProfile() {
+    async function updateProfile() {
         if (!userId) return alert("No user logged in.");
 
         try {
-            const[firstName, lastName = ""] = profile.fullName.split(" ");
+            const [firstName, lastName = ""] = profile.fullName.split(" ");
         
             const { error } = await supabase
-                .from("User Information") 
+                .from("user_information") 
                 .update({
                     first_name: firstName || "",
                     last_name: lastName || "",
@@ -109,7 +98,7 @@ function Profile() {
                     email: profile.email,
                     phone_number: profile.phoneNumber,
                     school: profile.school,
-                    location: profile.location
+                    location: profile.location,
                 })
                 .eq("user_id", userId);
 
@@ -118,8 +107,8 @@ function Profile() {
             alert("Profile updated successfully!");
         } catch (error) {
             console.error("Error updating profile:", error.message);
-        }
-     }
+        } 
+    }
 
     return (
         <div className="container1">
@@ -186,9 +175,9 @@ function Profile() {
 
             <div className="image-container">
                 <img 
-                        src={ProfileImg} 
-                        alt="Profile" 
-                        className="profile-placeholder"
+                    src={ProfileImg} 
+                    alt="Profile" 
+                    className="profile-placeholder"
                 />
             </div>
         </div>

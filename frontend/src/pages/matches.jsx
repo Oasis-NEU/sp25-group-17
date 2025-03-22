@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"; 
 import { useState, useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { supabase } from "../supabase";
@@ -89,6 +90,7 @@ function Matches() {
       const userMap = new Map(data.map(user => [user.user_id, user.username]));
 
       const updatedMatches = matchedUsers.map(user => ({
+        userId: user.userId,  
         username: userMap.get(user.userId) || "Unknown User",
         commonItems: user.commonItems,
         isConnected: false,
@@ -130,7 +132,17 @@ function Matches() {
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match, index) => (
             <div key={index} className="match-item">
-              <strong>{match.username}</strong>
+              {/* Make the username clickable */}
+              <Link
+                to={`/profile/${match.userId}`}
+                className="username-link"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Navigating to Profile:", match.userId);
+                }}
+              >
+                <strong>{match.username}</strong>
+              </Link>
               <ul>
                 {match.commonItems.map((activity, idx) => (
                   <li key={idx}>{activity}</li>

@@ -20,13 +20,15 @@ import { supabase } from "./supabase";
 import { AuthProvider } from "./authContext";
 import ProtectedRoute from "./protectedRoute";
 import BucketList from "./pages/BucketList";  
-import Matches from "./pages/Matches";  
+import Matches from "./pages/matches";  
 import Profile from "./pages/profile";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/signUp";
 import LogIn from "./pages/LogIn";
 import Landing from "./pages/Landing";
 import Header from "./components/Header";
+import UserProfile from "./pages/UserProfile";
 import Messages from "./pages/Messages";
+
 
 function App() {
   const [session, setSession] = useState(null);
@@ -66,10 +68,15 @@ function App() {
             path="/profile" 
             element={session ? <><Header /><Profile /></> : <Navigate to='/login' />} 
           />
+           <Route
+          path="/profile/:userId" 
+          element={session ? <><Header /><UserProfile /></> : <Navigate to='/UserProfile' />}
+          />
           <Route
           path="/messages"
           element={session ? <><Header /><Messages /></> : <Navigate to='/login' />}
           />
+          
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

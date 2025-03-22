@@ -12,11 +12,9 @@ body {
 /* Matches container styles */
 .matches-container {
   width: 1000px;
-  /* height: 800px; */
-  margin: 0px;
+  margin: 0;
   padding: 20px;
   background: #5AB5F0; /* Light Blue */
-  /* border-radius: 10px; */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
@@ -38,7 +36,6 @@ h2 {
   border: 2px solid #83C89A; /* Green border */
   background: white;
   font-size: 16px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .filter-input::placeholder{
@@ -57,10 +54,9 @@ h2 {
 
 /* Match items */
 .match-item {
-    
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 12px;
   border-bottom: 1px solid #83C89A; /* Green Separator */
   font-size: 16px;
@@ -76,32 +72,77 @@ h2 {
   transform: scale(1.02); /* Slight scale effect */
 }
 
-.match-item strong {
-  color: #83C89A; /* Light Blue */
-  font-weight: 600;
-  font-size: 30px;
+
+.match-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the left */
+  padding: 12px;
+  border-bottom: 1px solid #83C89A;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #1F76AE;
+  background: #fff;
+  transition: background-color 0.3s ease, transform 0.2s;
+  gap: 15px; /* Adds spacing between flex items */
 }
 
-/* Heart Button */
+
+
+.match-info {
+  flex: 0 0 200px; /* Ensures name + username stay fixed width */
+  display: flex;
+  flex-direction: column;
+}
+
+.match-name {
+  font-size: 1.4rem; /* Bigger size */
+  font-weight: bold;
+  white-space: nowrap;
+  color: #83C89A; /* Green color */
+}
+
+
+.match-username {
+  font-size: 0.9rem;
+  color: gray;
+  white-space: nowrap;
+}
+
+.match-content {
+  flex-grow: 1; /* Expands to take remaining space */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.match-items {
+  flex-grow: 1; /* Makes sure bucket list items stretch properly */
+}
+
+.match-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 300px; /* Adjust as needed */
+  word-wrap: break-word; /* Ensures long items wrap */
+}
+
+
+/* Heart Button Alignment */
 .heart-button {
   width: 60px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 22px;
+  color: red;
   transition: color 0.3s ease, transform 0.2s;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  flex-shrink: 0;
 }
 
-.heart {
-  color: #83C89A; /* Default Green */
-  transition: transform 0.2s, color 0.3s;
-}
 
-.heart.liked {
-  color: red; /* Red when liked */
-  transform: scale(1.2); /* Slight pop effect */
-}
-
-.match-item:last-child {
-  border-bottom: none;
-}

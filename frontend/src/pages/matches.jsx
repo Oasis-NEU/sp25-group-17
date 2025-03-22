@@ -78,30 +78,37 @@ function Matches() {
     try {
       const userIds = matchedUsers.map(user => user.userId);
       if (userIds.length === 0) return;
-
+  
       const { data, error } = await supabase
         .from("User Information")
-        .select("user_id, username")
+        .select("user_id, first_name, last_name, username")
         .in("user_id", userIds);
-
+  
       if (error) throw error;
-
-      const userMap = new Map(data.map(user => [user.user_id, user.username]));
-
+  
+      const userMap = new Map(data.map(user => [
+        user.user_id,
+        {
+          fullName: `${user.first_name} ${user.last_name}`.trim(),
+          username: user.username || "unknown",
+        }
+      ]));
+  
       const updatedMatches = matchedUsers.map(user => ({
-        username: userMap.get(user.userId) || "Unknown User",
+        fullName: userMap.get(user.userId)?.fullName || "Unknown User",
+        username: userMap.get(user.userId)?.username || "unknown",
         commonItems: user.commonItems,
         isConnected: false,
       }));
-
-      // Sort matches by the number of common items (most to least)
+  
       updatedMatches.sort((a, b) => b.commonItems.length - a.commonItems.length);
-
+  
       setMatches(updatedMatches);
     } catch (error) {
       console.error("Error fetching usernames:", error.message);
     }
   }
+  
 
   const handleConnect = (index) => {
     const updatedMatches = [...matches];
@@ -126,25 +133,37 @@ function Matches() {
         onChange={(e) => setFilter(e.target.value)}
       />
 
-      <div className="matches-list">
-        {filteredMatches.length > 0 ? (
-          filteredMatches.map((match, index) => (
-            <div key={index} className="match-item">
-              <strong>{match.username}</strong>
-              <ul>
-                {match.commonItems.map((activity, idx) => (
-                  <li key={idx}>{activity}</li>
-                ))}
-              </ul>
-              <button className="heart-button" onClick={() => handleConnect(index)}>
-                {match.isConnected ? <FaHeart className="heart liked" /> : <FaRegHeart className="heart" />}
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>No matches found yet.</p>
-        )}
+<div className="matches-list">
+  {filteredMatches.length > 0 ? (
+    filteredMatches.map((match, index) => (
+      <div key={index} className="match-item">
+        {/* Name and Username Section */}
+        <div className="match-info">
+          <strong className="match-name">{match.fullName}</strong>
+          <p className="match-username">@{match.username}</p>
+        </div>
+
+        {/* Activities and Connect Button Section */}
+        <div className="match-content">
+          <div className="match-items">
+            <ul>
+              {match.commonItems.map((activity, idx) => (
+                <li key={idx}>{activity}</li>
+              ))}
+            </ul>
+          </div>
+          <button className="heart-button" onClick={() => handleConnect(index)}>
+            {match.isConnected ? <FaHeart className="heart liked" /> : <FaRegHeart className="heart" />}
+          </button>
+        </div>
       </div>
+    ))
+  ) : (
+    <p>No matches found yet.</p>
+  )}
+</div>
+
+
     </div>
   );
 }

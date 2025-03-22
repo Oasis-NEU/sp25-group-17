@@ -20,7 +20,9 @@ function Header() {
           <li><Link to="/mybucket">My Bucket</Link></li>
           <li><Link to="/matches">Matches</Link></li>
           <li><Link to="/messages">Messages</Link></li>
+          <li><Link to="/Recommendations">Ideas</Link></li>
           <li><Link to="/Landing">Log Out</Link></li>
+          
         </ul>
       </div>
     </nav>

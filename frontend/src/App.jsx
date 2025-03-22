@@ -1,7 +1,6 @@
 import BucketList from "./pages/BucketList";  
 import Matches from "./pages/Matches";  
 import Profile from "./pages/Profile";
-import Recommendations from "./pages/Recommendations";
 import SignUp from "./pages/SignUp";
 import HomePage from "./pages/homePage";
 import Landing from "./pages/Landing";
@@ -11,6 +10,8 @@ import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import Messages from "./pages/Messages";
+import Recommendations from "./pages/Recommendations";
+
 
 function App() {
   const [session, setSession] = useState(null);
@@ -50,10 +51,15 @@ function App() {
             path="/profile" 
             element={session ? <><Header /><Profile /></> : <Navigate to='/login' />} 
           />
+           <Route
+          path="/Recommendations"
+          element={session ? <><Header /><Recommendations /></> : <Navigate to='/login' />}
+          />
           <Route
           path="/messages"
           element={session ? <><Header /><Messages /></> : <Navigate to='/login' />}
           />
+         
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

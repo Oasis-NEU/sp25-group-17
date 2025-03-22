@@ -1,31 +1,15 @@
-// import BucketList from "./pages/BucketList";  
-// import Matches from "./pages/Matches";  
-// import Profile from "./pages/Profile";
-// import Recommendations from "./pages/Recommendations";
-// import SignUp from "./pages/SignUp";
-// import HomePage from "./pages/homePage";
-// import Landing from "./pages/Landing";
-// import LogIn from "./pages/LogIn";
-// import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
-// import Header from "./components/Header";
-// import { Auth } from "@supabase/auth-ui-react";
-// import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
-import { useEffect, useState } from "react";
-import { Auth } from "@supabase/auth-ui-react";
-import { useLocation } from "react-router-dom";
-
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { supabase } from "./supabase"; 
-import { AuthProvider } from "./authContext";
-import ProtectedRoute from "./protectedRoute";
 import BucketList from "./pages/BucketList";  
 import Matches from "./pages/Matches";  
 import Profile from "./pages/Profile";
+import Recommendations from "./pages/Recommendations";
 import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
+import HomePage from "./pages/homePage";
 import Landing from "./pages/Landing";
+import LogIn from "./pages/LogIn";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
 import Header from "./components/Header";
+import { useEffect, useState } from "react";
+import { supabase } from "./supabase";
 import Messages from "./pages/Messages";
 
 function App() {

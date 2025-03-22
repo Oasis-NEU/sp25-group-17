@@ -63,6 +63,7 @@ function BucketList(){
 
 
   return (
+    
     <div className="bucket-container flex flex-col items-center p-6 min-h-screen">
       <h1 className="text-white text-2xl font-semibold mb-4">My Bucket List</h1>
       <img 

@@ -134,9 +134,9 @@ function BucketList() {
               <li key={index} className="bucket-item">{item.bucket_item}
                 <button
                   onClick={() => removeItem(item.bucket_item)}
-                  className="delete-button"
+                  className="delete-button ml-4 text-red-500 font-bold"
                 >
-                  x
+                  ✖
                 </button>
               </li>
 

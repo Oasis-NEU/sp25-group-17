@@ -5,23 +5,41 @@ import { supabase } from "../supabase";
 
 function BucketList(){ 
   const [newItem, setNewItem] = useState(""); 
-  const [username] = useState("username"); 
+  const [userId, setUserId] = useState(null); 
   const [bucketItems, setBucketItems] = useState([]);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUserId(user.id); // Store the user ID
+        // fetchItems(user.id); // Fetch their bucket list items
+      }
+    }
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
+    if(userId) {
+      fetchItems(userId);
+    }
+  },
+ [userId] );
 
   // Add a new item to the Supabase database
   async function addItem(){
-    if (newItem.trim() === "") return; 
+    if (newItem.trim() === "" || !userId) return;
+
 
     try {
       const { data, error } = await supabase
         .from("Bucket List Items")
-        .insert({ bucket_item: newItem, username: username })
-        .single();
+        .insert({ bucket_item: newItem, user_ID: userId });
 
       if (error) throw error;
       
       console.log("Added item:", data); 
-      fetchItems();
+      fetchItems(userId);
       setNewItem(""); // Clear the input field
     } catch (error) {
       console.error("Error adding item:", error.message);
@@ -33,7 +51,8 @@ function BucketList(){
     try {
       const { data, error } = await supabase
         .from("Bucket List Items")
-        .select("*");
+        .select("*")
+        .eq("user_ID", userId);
       if (error) throw error;
       console.log("Fetched items:", data);
       setBucketItems(data); 
@@ -41,11 +60,6 @@ function BucketList(){
       console.error("Error fetching items:", error.message);
     }
   };
-
-
-  useEffect(() => {
-    fetchItems();
-  }, []);
 
 
   return (

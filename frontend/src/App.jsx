@@ -21,7 +21,7 @@ import { AuthProvider } from "./authContext";
 import ProtectedRoute from "./protectedRoute";
 import BucketList from "./pages/BucketList";  
 import Matches from "./pages/Matches";  
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Landing from "./pages/Landing";

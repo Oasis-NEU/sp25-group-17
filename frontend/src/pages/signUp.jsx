@@ -61,7 +61,7 @@ function SignUp() {
         console.log(data.user);
       }
 
-      const user = data.user;  // ✅ Fix: Extract user correctly
+      const user = data.user; 
         console.log("User created successfully:", user);
 
       if (user) {
@@ -87,7 +87,7 @@ function SignUp() {
             alert("Error creating user: " + error.message);
           }
         } else {
-          // Only alert on success if no errors were returned
+          
           alert("Profile Successfully Created!");
           navigate("/login")
         }

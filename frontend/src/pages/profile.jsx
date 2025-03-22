@@ -28,7 +28,7 @@ function Profile() {
             setUserId(user.id);
 
             const { data, error } = await supabase
-                .from("User Information") // Ensure table name matches
+                .from("User Information") 
                 .select("*")
                 .eq("user_id", user.id)
                 .maybeSingle(); 
@@ -36,7 +36,7 @@ function Profile() {
             if (error) throw error;
             if (!data) {
                 console.warn("No profile found for user. It may not be created yet.");
-                return; // ✅ Stops execution if no profile exists
+                return; 
             }
             console.log("Fetched profile data:", data);
 
@@ -61,7 +61,7 @@ function Profile() {
             const { data: { user } } = await supabase.auth.getUser();
             
             if (user) {
-                fetchProfile(); // Fetch profile immediately on page load
+                fetchProfile();
             }
         }
 
@@ -69,7 +69,7 @@ function Profile() {
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             if (session?.user) {
-                fetchProfile(); // Fetch profile if the user logs in
+                fetchProfile(); 
             } else {
                 setProfile({ fullName: "", username: "", birthday: null, email: "", phoneNumber: "", school: "", location: "" }); // Reset profile
             }
@@ -77,19 +77,23 @@ function Profile() {
 
         return () => {
             if (subscription?.unsubscribe) {
-                subscription.unsubscribe(); // ✅ Properly clean up listener
+                subscription.unsubscribe();
             }
         };
     }, []);
 
     async function updateProfile() {
-        if (!userId) return alert("No user logged in.");
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            alert("No user logged in.");
+            return;
+        }
 
         try {
             const [firstName, lastName = ""] = profile.fullName.split(" ");
         
             const { error } = await supabase
-                .from("user_information") 
+                .from("User Information") 
                 .update({
                     first_name: firstName || "",
                     last_name: lastName || "",
@@ -100,10 +104,10 @@ function Profile() {
                     school: profile.school,
                     location: profile.location,
                 })
-                .eq("user_id", userId);
+                .eq("user_id", user.id);
 
             if (error) throw error;
-
+            console.log("user info:", user);
             alert("Profile updated successfully!");
         } catch (error) {
             console.error("Error updating profile:", error.message);

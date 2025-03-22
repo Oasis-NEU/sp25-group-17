@@ -26,7 +26,7 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Landing from "./pages/Landing";
 import Header from "./components/Header";
-import messages from "./pages/messages";
+import Messages from "./pages/Messages";
 
 function App() {
   const [session, setSession] = useState(null);
@@ -65,6 +65,10 @@ function App() {
           <Route 
             path="/profile" 
             element={session ? <><Header /><Profile /></> : <Navigate to='/login' />} 
+          />
+          <Route
+          path="/messages"
+          element={session ? <><Header /><Messages /></> : <Navigate to='/login' />}
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

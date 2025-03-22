@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import bucketImage from "../assets/Component 6.png"; 
+import bucketImage from "../assets/Component 6.png";
 import "./BucketList.css";
 import { supabase } from "../supabase";
 
-function BucketList(){ 
-  const [newItem, setNewItem] = useState(""); 
-  const [userId, setUserId] = useState(null); 
+function BucketList() {
+  const [newItem, setNewItem] = useState("");
+  const [userId, setUserId] = useState(null);
   const [bucketItems, setBucketItems] = useState([]);
 
   useEffect(() => {
@@ -20,14 +20,14 @@ function BucketList(){
   }, []);
 
   useEffect(() => {
-    if(userId) {
+    if (userId) {
       fetchItems(userId);
     }
   },
- [userId] );
+    [userId]);
 
   // Add a new item to the Supabase database
-  async function addItem(){
+  async function addItem() {
     if (newItem.trim() === "" || !userId) return;
 
 
@@ -37,14 +37,53 @@ function BucketList(){
         .insert({ bucket_item: newItem, user_ID: userId });
 
       if (error) throw error;
-      
-      console.log("Added item:", data); 
+
+      console.log("Added item:", data);
       fetchItems(userId);
       setNewItem(""); // Clear the input field
     } catch (error) {
       console.error("Error adding item:", error.message);
     }
   };
+
+  async function removeItem(itemText) {
+    console.log("Attempting to delete item:", itemText);
+  
+    try {
+      // Fetch the item ID that belongs to the logged-in user
+      const { data: items, error: fetchError } = await supabase
+        .from("Bucket List Items")
+        .select("ID")  // Fetch only the ID
+        .eq("user_ID", userId)  // Ensure it belongs to the logged-in user
+        .eq("bucket_item", itemText)  // Match the exact item text
+        .limit(1);  // Only fetch one record to avoid deleting duplicates
+  
+      if (fetchError) throw fetchError;
+  
+      if (!items || items.length === 0) {
+        console.warn("Item not found:", itemText);
+        return;
+      }
+  
+      const itemId = items[0].ID;  // Get the item's unique ID
+  
+      // Now delete using the ID
+      const { error: deleteError } = await supabase
+        .from("Bucket List Items")
+        .delete()
+        .eq("ID", itemId);  // Delete by the unique ID
+  
+      if (deleteError) throw deleteError;
+  
+      console.log(`Successfully deleted: ${itemText}`);
+      
+      
+      fetchItems(userId); // Refresh the list after deletion
+    } catch (error) {
+      console.error("Error deleting item:", error.message);
+    }
+  }
+  
 
   // Function to fetch items from the Supabase table
   async function fetchItems() {
@@ -55,7 +94,7 @@ function BucketList(){
         .eq("user_ID", userId);
       if (error) throw error;
       console.log("Fetched items:", data);
-      setBucketItems(data); 
+      setBucketItems(data);
     } catch (error) {
       console.error("Error fetching items:", error.message);
     }
@@ -65,9 +104,9 @@ function BucketList(){
   return (
     <div className="bucket-container flex flex-col items-center p-6 min-h-screen">
       <h1 className="text-white text-2xl font-semibold mb-4">My Bucket List</h1>
-      <img 
-        src={bucketImage} 
-        alt="Bucket List" 
+      <img
+        src={bucketImage}
+        alt="Bucket List"
         className="bucket-img mb-4"
       />
 
@@ -75,7 +114,15 @@ function BucketList(){
         {bucketItems.length > 0 ? (
           bucketItems.map((item, index) => (
             item && item.bucket_item ? (
-              <li key={index} className="bucket-item">{item.bucket_item}</li>
+              <li key={index} className="bucket-item">{item.bucket_item}
+                <button
+                  onClick={() => removeItem(item.bucket_item)}
+                  className="delete-button ml-4 text-red-500 font-bold"
+                >
+                  ✖
+                </button>
+              </li>
+
             ) : (
               <li key={index} className="bucket-item">Invalid item</li>
             )
@@ -91,10 +138,10 @@ function BucketList(){
           className="input-box"
           placeholder="Add an item..."
           value={newItem}
-          onChange={(e) => setNewItem(e.target.value)} 
+          onChange={(e) => setNewItem(e.target.value)}
         />
-        <button 
-          onClick={addItem} 
+        <button
+          onClick={addItem}
           className="add-button1"
         >
           Add

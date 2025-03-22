@@ -95,6 +95,20 @@ h1 {
   transition: background-color 0.3s ease, transform 0.2s;
 }
 
+.delete-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.delete-button:hover {
+  transform: scale(1.2);
+}
+
+
 .add-button1:hover {
   background-color: #FFFCC9;
   transform: scale(1.05);

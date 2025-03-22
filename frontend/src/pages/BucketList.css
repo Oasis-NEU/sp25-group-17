@@ -19,6 +19,19 @@ body {
   text-align: center;
 }
 
+.delete-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.delete-button:hover {
+  transform: scale(1.2);
+}
+
 /* Title Styling */
 h1 {
   color: #FFFCC9;

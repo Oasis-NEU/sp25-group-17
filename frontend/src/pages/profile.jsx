@@ -83,13 +83,17 @@ function Profile() {
     }, []);
 
     async function updateProfile() {
-        if (!userId) return alert("No user logged in.");
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            alert("No user logged in.");
+            return;
+        }
 
         try {
             const [firstName, lastName = ""] = profile.fullName.split(" ");
         
             const { error } = await supabase
-                .from("user_information") 
+                .from("User Information") 
                 .update({
                     first_name: firstName || "",
                     last_name: lastName || "",
@@ -100,9 +104,10 @@ function Profile() {
                     school: profile.school,
                     location: profile.location,
                 })
-                .eq("user_id", userId);
+                .eq("user_id", user.id);
 
             if (error) throw error;
+            console.log("user info:", user);
 
             alert("Profile updated successfully!");
         } catch (error) {

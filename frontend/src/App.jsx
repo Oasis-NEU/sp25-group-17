@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import Messages from "./pages/Messages";
+import UserProfile from "./pages/UserProfile";
 import Recommendations from "./pages/Recommendations";
 
 
@@ -49,7 +50,11 @@ function App() {
           />
           <Route 
             path="/profile" 
-            element={session ? <><Header /><Profile /></> : <Navigate to='/login' />} 
+            element={session ? <><Header /><Profile /></> : <Navigate to='/login' />}
+            />
+           <Route
+          path="/profile/:userId" 
+          element={session ? <><Header /><UserProfile /></> : <Navigate to='/UserProfile' />} 
           />
            <Route
           path="/Recommendations"

@@ -1,3 +1,20 @@
+.delete-button {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+  background-color: #ffffff; /* White background */
+  color: red; /* Change text color so it's visible */
+  border: 1px solid black;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 1; /* Ensure it's visible */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
 /* Centering the entire page */
 body, html {
     margin: 0;

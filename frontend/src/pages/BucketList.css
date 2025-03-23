@@ -1,4 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+.bucket-list {
+  overflow: visible; /* Ensure the button isn’t cut off */
+}
+.delete-button {
+  position: absolute;
+  right: 10px !important;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none !important;
+  color: red !important;
+  cursor: pointer;
+  font-size: 18px ;
+  opacity: 1 !important; /* Make it visible */
+  transition: transform 0.2s ease-in-out;
+}
 
 body {
   background-color: #FFFCC9; /* Soft Yellow */
@@ -6,6 +22,8 @@ body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
+
+
 
 /* General Container */
 .bucket-container {
@@ -19,18 +37,6 @@ body {
   text-align: center;
 }
 
-.delete-button {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-size: 18px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.delete-button:hover {
-  transform: scale(1.2);
-}
 
 /* Title Styling */
 h1 {
@@ -58,13 +64,19 @@ h1 {
 }
 
 .bucket-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Ensure absolute positioning works inside */
   padding: 12px;
   border-bottom: 1px solid #83C89A;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
   color: #1F76AE;
   background: #fff;
   transition: background-color 0.3s ease, transform 0.2s;
 }
+
 
 
 
@@ -108,18 +120,6 @@ h1 {
   transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.delete-button {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-size: 18px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.delete-button:hover {
-  transform: scale(1.2);
-}
 
 .add-button1:hover {
   background-color: #FFFCC9;

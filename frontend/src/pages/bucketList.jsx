@@ -118,7 +118,7 @@ function BucketList() {
   }
 
   return (
-    <div className="bucket-container flex flex-col items-center p-6 min-h-screen">
+    <div className="bucket-container">
       {/* Left Section: First Name, Last Name & Username */}
       <div className="user-info">
         <h2 className="full-name">{userDetails.first_name} {userDetails.last_name}</h2>
@@ -127,14 +127,14 @@ function BucketList() {
       <h1 className="text-white text-2xl font-semibold mb-4">My Bucket List</h1>
       <img src={bucketImage} alt="Bucket List" className="bucket-img mb-4" />
 
-      <ul className="bucket-list w-full max-w-md p-4 rounded-lg">
+      <ul className="bucket-list">
         {bucketItems.length > 0 ? (
           bucketItems.map((item, index) => (
             item && item.bucket_item ? (
               <li key={index} className="bucket-item">{item.bucket_item}
                 <button
                   onClick={() => removeItem(item.bucket_item)}
-                  className="delete-button ml-4 text-red-500 font-bold"
+                  className="delete-button"
                 >
                   ✖
                 </button>

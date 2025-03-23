@@ -61,6 +61,7 @@
         transition: background-color 0.3s ease;
         position: absolute;
         right: 300px;
+        white-space: nowrap;
     }
 
     .SignUpButton {
